@@ -14,10 +14,6 @@ const Page404 = () => {
 }
 
 const Error404 = styled.div`
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
     width: 100%;
     height: 100vh;
     background: linear-gradient(to right,#8E0E00,#1F1C18);
