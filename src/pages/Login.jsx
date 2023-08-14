@@ -1,15 +1,22 @@
+import React, {useCallback, useState} from 'react';
+import { NavLink } from "react-router-dom";
 import login from './../img/portadaLogin.jpg';
 import { styled } from 'styled-components';
 import { BiErrorCircle, AiOutlineCheckCircle, AiOutlineWarning } from 'react-icons/ai';
 import { ColorFondo, ColorLogo, TextoColorClaro } from '../components/UI/Colores';
 
 const Login = () => {
+
+    const [variant,setVariant] = useState('login');
+    const toggleVariant = useCallback(()=>{
+        setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login')
+    },[]);
     return (
         <Portada>
             <h1>HydrobiusFlix</h1>
             <StyledFondo>
                 <StyledCentradoForm>
-                    <h2>Inica sesion</h2>
+                    <h2>{variant === 'login' ? 'Inicia sesión' : 'Crear cuenta' }</h2>
                     <StyledForm action="">
                         <StyledFormControl>
                             <input type="text" required/>
@@ -19,19 +26,21 @@ const Login = () => {
                             <input type="password" required/>
                             <label htmlFor="">Contraseña</label>
                         </StyledFormControl>
-                        <StyledButton type='submit'>Iniciar</StyledButton>
+                        <StyledButton type='submit'>{variant === 'login' ? 'Iniciar sesión' : 'Crear cuenta'}</StyledButton>
                         <StyledRemember>
                             <div>
                                 <input type="checkbox" />
                                 <label htmlFor="">Recordarme</label>
                             </div>
-                            <a href="">Necesita ayuda?</a>
+                            <NavLink to='/LoginHelp'>¿Necesita ayuda?</NavLink>
                         </StyledRemember>
                     </StyledForm>
-                    <p>Nuevo en HydrobiuFlix <a href="">Registrate ahora</a></p>
+                    <p>{variant === 'login' ? 'Primera vez' : 'Ya tienes una cuenta?'}<span
+                        onClick={toggleVariant}
+                        >{variant === 'login' ? ' Registrate ahora' : ' Inicia sesión'}</span></p>
                     <small>
-                        Esta pagina esta protegida por Google reCAPTCHA para verificar que no eres un bot
-                        <a href=""> saber mas.</a>
+                        Esta pagina esta protegida por Google reCAPTCHA para verificar que no eres un robot.
+                        <NavLink to="/MoreInfo"> más info.</NavLink>
                     </small>
                 </StyledCentradoForm>
             </StyledFondo>
@@ -50,7 +59,7 @@ const Portada = styled.div`
     background-blend-mode: soft-light;
 
     h1{
-        color: #ff0054;
+        color: ${ColorLogo};
         font-weight: bold;
         font-size: 2.5rem;
     }
@@ -77,7 +86,7 @@ const StyledFondo = styled.div`
 const StyledCentradoForm = styled.div`
     width: 85%;
     margin: auto;
-    padding: 25px 0;
+    padding: 4rem 0;
 
     small{
         display: block;
@@ -87,9 +96,12 @@ const StyledCentradoForm = styled.div`
     small a{
         color: #0071eb;
     }
-    p a{
-        color: #fff;
+    p span{
+        cursor: pointer;
         font-weight: bold;
+    }
+    p span:hover{
+        text-decoration-line: underline;
     }
 
 `;
@@ -113,7 +125,7 @@ const StyledFormControl = styled.div`
         border-radius: 4px;
         color: ${ColorFondo};
         font-size: 1rem;
-        padding: 16px 20px 0;
+        padding: 25px 20px 0;
     }
     input:focus{
         background: #444;
@@ -150,7 +162,11 @@ const StyledRemember = styled.div`
     display: flex;
     justify-content: space-between;
     a{
-        color: ${TextoColorClaro};
+        color: #b3b3b3;
+        font-size: .8rem;
+    }
+    a:hover{
+        text-decoration-line: underline;
     }
 `;
 
