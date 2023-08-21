@@ -4,6 +4,7 @@ import login from './../img/portadaLogin.jpg';
 import { styled } from 'styled-components';
 import { BiErrorCircle, AiOutlineCheckCircle, AiOutlineWarning } from 'react-icons/ai';
 import { ColorFondo, ColorLogo, TextoColorClaro } from '../components/UI/Colores';
+import { StyledFormControl } from '../components/UI/Colores';
 
 const Login = () => {
 
@@ -110,39 +111,6 @@ const StyledForm = styled.form`
     button:hover{
         transition: .2s;
         background-color: #c40812;
-    }
-`;
-const StyledFormControl = styled.div`
-    padding: 10px 0;
-    position: relative;
-    input{
-        position: relative;
-        height: 100%;
-        width: 100%;
-        background: #333;
-        border: none;
-        outline: none;
-        border-radius: 4px;
-        color: ${ColorFondo};
-        font-size: 1rem;
-        padding: 25px 20px 0;
-    }
-    input:focus{
-        background: #444;
-    }
-    label{
-        position: absolute;
-        left: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1rem;
-        pointer-events: none;
-        color: #8c8c8c;
-        transition: all 0.1s ease;
-    }
-    input:focus ~ label{
-        font-size: 0.75rem;
-        transform: translateY(-130%);
     }
 `;
 const StyledButton = styled.button`
